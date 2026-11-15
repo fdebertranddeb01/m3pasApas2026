@@ -65,7 +65,7 @@ public class ConsoleFdB implements java.io.Serializable {
         int res = 0;
 
         while (encore) {
-            String line="undefined";
+            String line="non definie";
             try {
                 println(s);
                 line = myinput.readLine();
