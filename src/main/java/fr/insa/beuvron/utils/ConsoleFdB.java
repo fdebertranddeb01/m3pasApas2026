@@ -16,7 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with UtilsBeuvron.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package fr.insa.beuvron.utils;
 
 import java.io.*;
@@ -27,7 +26,9 @@ public class ConsoleFdB implements java.io.Serializable {
 
     static final long serialVersionUID = 30101L;
 
-    /** même méthode appelle System.out.println mais sans envoie d'exceptions
+    /**
+     * même méthode appelle System.out.println mais sans envoie d'exceptions
+     *
      * @param mess la chaîne à afficher
      * @see java.io.PrintStream#println(String)
      * @see java.lang.System#out
@@ -36,7 +37,9 @@ public class ConsoleFdB implements java.io.Serializable {
         System.out.println(mess);
     }
 
-    /** même méthode appelle System.out.print mais sans envoie d'exceptions
+    /**
+     * même méthode appelle System.out.print mais sans envoie d'exceptions
+     *
      * @param mess la chaîne à afficher
      * @see java.io.PrintStream#println(String)
      * @see java.lang.System#out
@@ -45,11 +48,12 @@ public class ConsoleFdB implements java.io.Serializable {
         System.out.print(mess);
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre une ligne de texte qui sera convertie
-     * en entier sur le flux d'entrée standard (System.in)
-     * cette methode redemande tant qu'un entier correct n'a pas été entré
-     * elle termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre une ligne de texte qui
+     * sera convertie en entier sur le flux d'entrée standard (System.in) cette
+     * methode redemande tant qu'un entier correct n'a pas été entré elle
+     * termine le programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return un entier tapé par l'utilisateur
@@ -61,13 +65,16 @@ public class ConsoleFdB implements java.io.Serializable {
         int res = 0;
 
         while (encore) {
+            String line="undefined";
             try {
                 println(s);
-                res = Integer.parseInt(myinput.readLine());
+                line = myinput.readLine();
+                res = Integer.parseInt(line);
                 encore = false;
             } catch (IOException e) {
                 throw new Error(e);
             } catch (NumberFormatException e) {
+                System.out.println("line = \"" + line + "\"");
                 println("entier non valide, essayez encore");
                 encore = true;
             }
@@ -75,17 +82,19 @@ public class ConsoleFdB implements java.io.Serializable {
         return res;
     }
 
-    /** même chose que {@link #entreeEntier}, seul le nom change
+    /**
+     * même chose que {@link #entreeEntier}, seul le nom change
      */
     public static int entreeInt(String s) {
         return entreeEntier(s);
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre une ligne de texte qui sera convertie
-     * en entier long sur le flux d'entrée standard (System.in)
-     * cette methode redemande tant qu'un entier correct n'a pas été entré
-     * elle termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre une ligne de texte qui
+     * sera convertie en entier long sur le flux d'entrée standard (System.in)
+     * cette methode redemande tant qu'un entier correct n'a pas été entré elle
+     * termine le programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return un entier tapé par l'utilisateur
@@ -111,10 +120,11 @@ public class ConsoleFdB implements java.io.Serializable {
         return res;
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre O pour oui ou N pour non
-     * cette methode redemande tant qu'un entier correct n'a pas été entré
-     * elle termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre O pour oui ou N pour non
+     * cette methode redemande tant qu'un entier correct n'a pas été entré elle
+     * termine le programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return un entier tapé par l'utilisateur
@@ -135,11 +145,12 @@ public class ConsoleFdB implements java.io.Serializable {
         return rep.compareToIgnoreCase("O") == 0;
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre une ligne de texte qui sera convertie
-     * en flottant double précision sur le flux d'entrée standard (System.in)
-     * cette methode redemande tant qu'un flottant correct n'a pas été entré
-     * elle termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre une ligne de texte qui
+     * sera convertie en flottant double précision sur le flux d'entrée standard
+     * (System.in) cette methode redemande tant qu'un flottant correct n'a pas
+     * été entré elle termine le programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return le premier caractère tapé par l'utilisateur
@@ -165,10 +176,11 @@ public class ConsoleFdB implements java.io.Serializable {
         return res;
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre une ligne de texte  sur le flux d'entrée standard (System.in)
-     * dont le premier caractère sera retourné
-     * cette methode redemande tant qu'un caractère n'a pas été entré
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre une ligne de texte sur le
+     * flux d'entrée standard (System.in) dont le premier caractère sera
+     * retourné cette methode redemande tant qu'un caractère n'a pas été entré
      * elle termine le programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
@@ -195,10 +207,12 @@ public class ConsoleFdB implements java.io.Serializable {
         return res;
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre une ligne de texte  sur le flux d'entrée standard (System.in)
-     * qui sera retournée sous forme de String (sans le caractère de fin de ligne)
-     * cette methode termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre une ligne de texte sur le
+     * flux d'entrée standard (System.in) qui sera retournée sous forme de
+     * String (sans le caractère de fin de ligne) cette methode termine le
+     * programme en cas d'exeption d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return une chaîne tapées par l'utilisateur
@@ -217,11 +231,13 @@ public class ConsoleFdB implements java.io.Serializable {
         return res;
     }
 
-    /** cette methode affiche un message sur le flux de sortie standard (System.out), et
-     * attend que l'utilisateur entre plusieurs lignes de texte  sur le flux d'entrée standard (System.in)
-     * qui sera retournée sous forme de String.
-     * La saisie s'arrete quand l'utilisateur tape "fin" sur une ligne.
-     * cette methode termine le programme en cas d'exeption d'entré/sortie
+    /**
+     * cette methode affiche un message sur le flux de sortie standard
+     * (System.out), et attend que l'utilisateur entre plusieurs lignes de texte
+     * sur le flux d'entrée standard (System.in) qui sera retournée sous forme
+     * de String. La saisie s'arrete quand l'utilisateur tape "fin" sur une
+     * ligne. cette methode termine le programme en cas d'exeption
+     * d'entré/sortie
      *
      * @param s message à l'utilisateur
      * @return une chaîne tapées par l'utilisateur
@@ -239,7 +255,7 @@ public class ConsoleFdB implements java.io.Serializable {
             while (cur.compareTo("fin") != 0) {
                 cur = myinput.readLine();
                 if (cur.compareTo("fin") != 0) {
-                    res = res + cur +"\n";
+                    res = res + cur + "\n";
                 }
             }
         } catch (IOException e) {
@@ -251,20 +267,20 @@ public class ConsoleFdB implements java.io.Serializable {
     (usuellement associé au clavier) pour entrer des données
      */
     private static BufferedReader myinput = new BufferedReader(new InputStreamReader(System.in));
-    
+
     public static <E> Optional<E> choisiDansListe(List<E> choix) {
         int rep = -1;
         while (rep < 0 || rep > choix.size()) {
             System.out.println("choisir en indiquant le numéro : ");
-            for(int i = 0 ; i < choix.size() ; i ++) {
-                System.out.println((i+1) + ": " + choix.get(i));
+            for (int i = 0; i < choix.size(); i++) {
+                System.out.println((i + 1) + ": " + choix.get(i));
             }
             rep = ConsoleFdB.entreeInt("Votre choix (ou 0 pour annuler) :");
         }
         if (rep == 0) {
             return Optional.empty();
         } else {
-            return Optional.of(choix.get(rep-1));
+            return Optional.of(choix.get(rep - 1));
         }
     }
 }

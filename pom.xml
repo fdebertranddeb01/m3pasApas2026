@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- Project from https://start.vaadin.com/5b428aef-7e45-4ab8-8f56-d0fbea83468e -->
     <groupId>fr.insa.toto</groupId>
-    <artifactId>m3vide</artifactId>
+    <artifactId>m3pasApas2026</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
@@ -159,4 +159,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+    <name>m3pasApas2026</name>
 </project>

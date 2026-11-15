@@ -42,11 +42,11 @@ public class ConnectionSimpleSGBD {
     /**
      * permet de selectionner le SGBD utilisé
      */
-    public static SGBDPossibles SGBD = SGBDPossibles.H2FILE;
+    public static SGBDPossibles SGBD = SGBDPossibles.MYSQL;
 
     // à modifier
     public static String LOGIN_SUR_SERVEUR_M3 = "m3_fdebertranddeb01";
-    public static String PASS_SUR_SERVEUR_M3 = "donnez le votre";
+    public static String PASS_SUR_SERVEUR_M3 = "c440f341";
 
     /**
      * ATTENTION : chaque appel à defautCon crée une nouvelle connection à la
