@@ -19,6 +19,7 @@ along with CoursBeuvron.  If not, see <http://www.gnu.org/licenses/>.
 package fr.insa.toto.model;
 
 import fr.insa.beuvron.utils.ConsoleFdB;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +35,9 @@ import java.util.Optional;
  *
  * @author francois
  */
-public class Utilisateur {
+public class Utilisateur implements Serializable{
+    
+private static final long serialVersionUID = 1L;
 
     private int id;
     private String nom;
@@ -158,6 +161,25 @@ public class Utilisateur {
             if (rs.next()) {
                 String nom = rs.getString("nom");
                 String pass = rs.getString("pass");
+                int role = rs.getInt("role");
+                Utilisateur trouve = new Utilisateur(id, nom, pass, role);
+                return Optional.of(trouve);
+            } else {
+                return Optional.empty();
+            }
+        }
+
+    }
+
+    public static Optional<Utilisateur> findByNomEtPass(Connection con,String nom,String pass) throws SQLException {
+        try (var pst = con.prepareStatement(
+                "select id,nom,pass,role from utilisateur where nom = ? and pass = ?")) {
+            int i = 1;
+            pst.setString(i++, nom);
+            pst.setString(i++, pass);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
                 int role = rs.getInt("role");
                 Utilisateur trouve = new Utilisateur(id, nom, pass, role);
                 return Optional.of(trouve);
