@@ -44,7 +44,7 @@ public class ConnectionPool {
 
     // à modifier
     public static String LOGIN_SUR_SERVEUR_M3 = "m3_fdebertranddeb01";
-    public static String PASS_SUR_SERVEUR_M3 = "donnez le votre";
+    public static String PASS_SUR_SERVEUR_M3 = "je le donne pas";
     
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;

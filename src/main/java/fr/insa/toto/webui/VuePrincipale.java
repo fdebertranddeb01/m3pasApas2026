@@ -31,7 +31,7 @@ import com.vaadin.flow.router.Route;
 public class VuePrincipale extends VerticalLayout{
     
     public VuePrincipale() {
-        this.add(new H3("Coucou"));
+        this.add(new H3("Coucou3"));
     }
     
 }
