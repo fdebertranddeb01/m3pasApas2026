@@ -22,6 +22,8 @@ package fr.insa.toto.webui;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import fr.insa.toto.model.Utilisateur;
+import java.util.Optional;
 
 /**
  *
@@ -30,8 +32,35 @@ import com.vaadin.flow.router.Route;
 @Route(value = "")
 public class VuePrincipale extends VerticalLayout{
     
+    private Optional<Utilisateur> curUser;
+    
+    private Entete entete;
+    
     public VuePrincipale() {
+        this.curUser = Optional.empty();
+        this.setSizeFull();
+        
         this.add(new H3("Coucou3"));
+        this.entete = new Entete(this);
+        this.add(this.entete);
+    }
+    
+    public void updateView() {
+        this.entete.updateView();
+    }
+
+    /**
+     * @return the curUser
+     */
+    public Optional<Utilisateur> getCurUser() {
+        return curUser;
+    }
+
+    /**
+     * @param curUser the curUser to set
+     */
+    public void setCurUser(Optional<Utilisateur> curUser) {
+        this.curUser = curUser;
     }
     
 }

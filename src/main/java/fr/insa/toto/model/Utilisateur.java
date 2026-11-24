@@ -168,6 +168,25 @@ public class Utilisateur {
 
     }
 
+    public static Optional<Utilisateur> findByNomAndPass(Connection con, String nom,String pass) throws SQLException {
+        try (var pst = con.prepareStatement(
+                "select id,nom,pass,role from utilisateur where nom = ? and pass = ?")) {
+            int i = 1;
+            pst.setString(i++, nom);
+            pst.setString(i++, pass);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                int role = rs.getInt("role");
+                Utilisateur trouve = new Utilisateur(id, nom, pass, role);
+                return Optional.of(trouve);
+            } else {
+                return Optional.empty();
+            }
+        }
+
+    }
+
     public static List<Utilisateur> tousLesUtilisateurs(Connection con) throws SQLException {
         try (var pst = con.prepareStatement(
                 "select id,nom,pass,role from utilisateur")) {

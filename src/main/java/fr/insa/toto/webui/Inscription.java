@@ -56,7 +56,7 @@ public class Inscription extends VerticalLayout {
         try (Connection con = ConnectionPool.getConnection()) {
             nouveau.saveInDB(con);
         } catch (SQLException ex) {
-            Notification.show(ex.getLocalizedMessage(), 5000, Notification.Position.MIDDLE);
+            ErrorsUtils.affErreur(ex);
         }
     }
 
